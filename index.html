@@ -6,7 +6,7 @@
   <meta property="og:title" content=" James&#39;s Dev Lessons" />
   
   <meta property="og:site_name" content="James&#39;s Dev Lessons" />
-  <meta property="og:url" content="http://quijames.github.io/" />
+  <meta property="og:url" content="http://localhost:1313/" />
   
   
   <meta property="og:type" content="website" />
@@ -16,21 +16,21 @@
      James&#39;s Dev Lessons
   </title>
 
-  <link rel="stylesheet" href="http://quijames.github.io/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="http://quijames.github.io/css/main.css" />
-  <link rel="stylesheet" href="http://quijames.github.io/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="http://quijames.github.io/css/github.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/github.css" />
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
-  <link rel="shortcut icon" href="http://quijames.github.io/images/favicon.ico" />
-  <link rel="apple-touch-icon" href="http://quijames.github.io/images/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="http://localhost:1313/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png" />
   
-  <link href="http://quijames.github.io/index.xml" rel="alternate" type="application/rss+xml" title="James&#39;s Dev Lessons" />
+  <link href="http://localhost:1313/index.xml" rel="alternate" type="application/rss+xml" title="James&#39;s Dev Lessons" />
   
 </head>
 <body>
     <header class="global-header"  style="background-image:url( /images/bg.jpg )">
     <section class="header-text">
-      <h1><a href="http://quijames.github.io/">James&#39;s Dev Lessons</a></h1>
+      <h1><a href="http://localhost:1313/">James&#39;s Dev Lessons</a></h1>
       
       <div class="sns-links hidden-print">
   
@@ -45,7 +45,7 @@
 
       
       
-      <a href="http://quijames.github.io/index.xml" class="btn-header btn-subscribe hidden-xs">
+      <a href="http://localhost:1313/index.xml" class="btn-header btn-subscribe hidden-xs">
         <i class="fa fa-rss"></i>
         &nbsp;Subscribe
       </a>
@@ -59,7 +59,7 @@
   
   <article>
   <header>
-    <h2><a href="http://quijames.github.io/post/test/">test</a></h2>
+    <h2><a href="http://localhost:1313/post/test/">Building an app with AngularJS, PhoneGap and Firebase</a></h2>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
@@ -70,8 +70,14 @@
     </div>
   </header>
   <div>
-    My first test post
+    Part 1: Setting up your environment Before starting anything, you need to set up Android on your machine. Fixing [ERROR] initializing cordova class not found This is a result of running cordova plugin add org.apache.cordova.device No worries, just add the following to your /www/config.xml: &lt;feature name=&quot;Device&quot;&gt; &lt;param name=&quot;android-package&quot; value=&quot;org.apache.cordova.device.Device&quot; /&gt; &lt;/feature&gt; When Phonegap builds for Android now, it will add this to /platforms/android/res/xml/config.xml. Voila! Handling API request timeouts When logging in, our app may be connected to a wireless network but the underlying connection to the internet is not working.
   </div>
+  
+  <footer>
+    <ul class="pager">
+      <li class="next"><a href="http://localhost:1313/post/test/">Read more &raquo;</a></li>
+    </ul>
+  </footer>
   
 </article>
 
@@ -101,13 +107,16 @@
 
   </footer>
 
-  <script src="http://quijames.github.io/js/highlight.pack.js"></script>
+  <script src="http://localhost:1313/js/highlight.pack.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>
   
   
-</body>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>
 
 

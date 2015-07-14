@@ -2,20 +2,78 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on James&#39;s Dev Lessons</title>
-    <link>http://quijames.github.io/tags/golang/</link>
+    <link>http://localhost:1313/tags/golang/</link>
     <description>Recent content in Golang on James&#39;s Dev Lessons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Jul 2015 16:43:28 +0200</lastBuildDate>
-    <atom:link href="http://quijames.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>test</title>
-      <link>http://quijames.github.io/post/test/</link>
+      <title>Building an app with AngularJS, PhoneGap and Firebase</title>
+      <link>http://localhost:1313/post/test/</link>
       <pubDate>Fri, 10 Jul 2015 16:43:28 +0200</pubDate>
       
-      <guid>http://quijames.github.io/post/test/</guid>
-      <description>&lt;p&gt;My first test post&lt;/p&gt;
+      <guid>http://localhost:1313/post/test/</guid>
+      <description>
+
+&lt;h1 id=&#34;part-1-setting-up-your-environment:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Part 1: Setting up your environment&lt;/h1&gt;
+
+&lt;p&gt;Before starting anything, you need to set up Android on your machine.&lt;/p&gt;
+
+&lt;p&gt;Yo  Peuge, what&amp;rsquo;s happening&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Brosef&lt;/p&gt;
+
+&lt;h3 id=&#34;fixing-error-initializing-cordova-class-not-found:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Fixing [ERROR] initializing cordova class not found&lt;/h3&gt;
+
+&lt;p&gt;This is a result of running&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; cordova plugin add org.apache.cordova.device
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No worries, just add the following to your /www/config.xml:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt; &amp;lt;feature name=&amp;quot;Device&amp;quot;&amp;gt;
+    &amp;lt;param name=&amp;quot;android-package&amp;quot; value=&amp;quot;org.apache.cordova.device.Device&amp;quot; /&amp;gt;
+&amp;lt;/feature&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When Phonegap builds for Android now, it will add this to /platforms/android/res/xml/config.xml. Voila!&lt;/p&gt;
+
+&lt;h3 id=&#34;handling-api-request-timeouts:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Handling API request timeouts&lt;/h3&gt;
+
+&lt;p&gt;When logging in, our app may be connected to a wireless network but the underlying connection to the internet is not working. In this case &lt;code&gt;$http.get(url)&lt;/code&gt; will not succeed, but we&amp;rsquo;ll never know, and the logging in will appear to hang. Fixing is easy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;    $http.get(url, {
+        timeout: 20000 //time in milliseconds
+    }).success(function (response) { 
+        // handle success
+        deferred.resolve(response);
+    }).error(function (err, status) {
+        deferred.reject(err);
+    });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and from the controller that called the method to call the API:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;    apiService.myHttpMethod().then(
+        function (success) {
+            // do something successful!
+        },
+        function (err) {
+            // show an error
+            if (err)
+                $scope.message = err;
+            else
+                $scope.message = &amp;quot;There was a problem running the $http.get. Please try again or check your internet connection&amp;quot;;    
+        }
+    );
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem is that $http.get timeouts return a null error, so you can&amp;rsquo;t easily identify them, hence the generic error message. At least we now get timeouts though, so problem solved.&lt;/p&gt;
 </description>
     </item>
     

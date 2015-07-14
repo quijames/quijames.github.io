@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Development on James&#39;s Dev Lessons</title>
-    <link>http://localhost:1313/tags/development/</link>
-    <description>Recent content in Development on James&#39;s Dev Lessons</description>
+    <title>Angular on James&#39;s Dev Lessons</title>
+    <link>http://localhost:1313/tags/angular/</link>
+    <description>Recent content in Angular on James&#39;s Dev Lessons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Jul 2015 16:43:28 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/development/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/angular/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Building an app with AngularJS, PhoneGap and Firebase</title>

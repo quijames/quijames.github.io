@@ -3,10 +3,10 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content=" test &middot;  James&#39;s Dev Lessons" />
+  <meta property="og:title" content=" Building an app with AngularJS, PhoneGap and Firebase &middot;  James&#39;s Dev Lessons" />
   
   <meta property="og:site_name" content="James&#39;s Dev Lessons" />
-  <meta property="og:url" content="http://quijames.github.io/post/test/" />
+  <meta property="og:url" content="http://localhost:1313/post/test/" />
   
   
   <meta property="og:type" content="article" />
@@ -15,27 +15,31 @@
   
   <meta property="og:article:tag" content="Development" />
   
-  <meta property="og:article:tag" content="golang" />
+  <meta property="og:article:tag" content="Angular" />
+  
+  <meta property="og:article:tag" content="Phonegap" />
+  
+  <meta property="og:article:tag" content="Firebase" />
   
   
 
   <title>
-     test &middot;  James&#39;s Dev Lessons
+     Building an app with AngularJS, PhoneGap and Firebase &middot;  James&#39;s Dev Lessons
   </title>
 
-  <link rel="stylesheet" href="http://quijames.github.io/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="http://quijames.github.io/css/main.css" />
-  <link rel="stylesheet" href="http://quijames.github.io/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="http://quijames.github.io/css/github.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/github.css" />
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
-  <link rel="shortcut icon" href="http://quijames.github.io/images/favicon.ico" />
-  <link rel="apple-touch-icon" href="http://quijames.github.io/images/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="http://localhost:1313/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png" />
   
 </head>
 <body>
     <header class="global-header"  style="background-image:url( /images/bg.jpg )">
     <section class="header-text">
-      <h1><a href="http://quijames.github.io/">James&#39;s Dev Lessons</a></h1>
+      <h1><a href="http://localhost:1313/">James&#39;s Dev Lessons</a></h1>
       
       <div class="sns-links hidden-print">
   
@@ -49,7 +53,7 @@
 </div>
 
       
-      <a href="http://quijames.github.io/" class="btn-header btn-back hidden-xs">
+      <a href="http://localhost:1313/" class="btn-header btn-back hidden-xs">
         <i class="fa fa-angle-left"></i>
         &nbsp;Home
       </a>
@@ -62,7 +66,7 @@
 
 <article>
   <header>
-    <h1 class="text-primary">test</h1>
+    <h1 class="text-primary">Building an app with AngularJS, PhoneGap and Firebase</h1>
     <div class="post-meta clearfix">
       <div class="post-date pull-left">
         Posted on
@@ -72,15 +76,71 @@
       </div>
       <div class="pull-right">
         
-        <span class="post-tag small"><a href="http://quijames.github.io//tags/development">#Development</a></span>
+        <span class="post-tag small"><a href="http://localhost:1313//tags/development">#Development</a></span>
         
-        <span class="post-tag small"><a href="http://quijames.github.io//tags/golang">#golang</a></span>
+        <span class="post-tag small"><a href="http://localhost:1313//tags/angular">#Angular</a></span>
+        
+        <span class="post-tag small"><a href="http://localhost:1313//tags/phonegap">#Phonegap</a></span>
+        
+        <span class="post-tag small"><a href="http://localhost:1313//tags/firebase">#Firebase</a></span>
         
       </div>
     </div>
   </header>
   <section>
-    <p>My first test post</p>
+    
+
+<h1 id="part-1-setting-up-your-environment:b128b7694e4de962e0088bcb1bcb254f">Part 1: Setting up your environment</h1>
+
+<p>Before starting anything, you need to set up Android on your machine.</p>
+
+<h3 id="fixing-error-initializing-cordova-class-not-found:b128b7694e4de962e0088bcb1bcb254f">Fixing [ERROR] initializing cordova class not found</h3>
+
+<p>This is a result of running</p>
+
+<pre><code> cordova plugin add org.apache.cordova.device
+</code></pre>
+
+<p>No worries, just add the following to your /www/config.xml:</p>
+
+<pre><code class="language-xml"> &lt;feature name=&quot;Device&quot;&gt;
+    &lt;param name=&quot;android-package&quot; value=&quot;org.apache.cordova.device.Device&quot; /&gt;
+&lt;/feature&gt;
+</code></pre>
+
+<p>When Phonegap builds for Android now, it will add this to /platforms/android/res/xml/config.xml. Voila!</p>
+
+<h3 id="handling-api-request-timeouts:b128b7694e4de962e0088bcb1bcb254f">Handling API request timeouts</h3>
+
+<p>When logging in, our app may be connected to a wireless network but the underlying connection to the internet is not working. In this case <code>$http.get(url)</code> will not succeed, but we&rsquo;ll never know, and the logging in will appear to hang. Fixing is easy:</p>
+
+<pre><code class="language-javascript">    $http.get(url, {
+        timeout: 20000 //time in milliseconds
+    }).success(function (response) { 
+        // handle success
+        deferred.resolve(response);
+    }).error(function (err, status) {
+        deferred.reject(err);
+    });
+</code></pre>
+
+<p>and from the controller that called the method to call the API:</p>
+
+<pre><code class="language-javascript">    apiService.myHttpMethod().then(
+        function (success) {
+            // do something successful!
+        },
+        function (err) {
+            // show an error
+            if (err)
+                $scope.message = err;
+            else
+                $scope.message = &quot;There was a problem running the $http.get. Please try again or check your internet connection&quot;;    
+        }
+    );
+</code></pre>
+
+<p>The problem is that $http.get timeouts return a null error, so you can&rsquo;t easily identify them, hence the generic error message. At least we now get timeouts though, so problem solved.</p>
 
   </section>
   <footer>
@@ -124,12 +184,15 @@
 
   </footer>
 
-  <script src="http://quijames.github.io/js/highlight.pack.js"></script>
+  <script src="http://localhost:1313/js/highlight.pack.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>
   
   
-</body>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>
 
