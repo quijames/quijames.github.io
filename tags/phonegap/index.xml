@@ -107,7 +107,7 @@
 angular.module(&#39;Scanner&#39;, [
         &#39;ngRoute&#39;,
         &#39;ngTouch&#39;,
-        &#39;mobile-angular-ui]
+        &#39;mobile-angular-ui&#39;]
     ]) 
     .config(function ($routeProvider) {
         $routeProvider.when(&#39;/&#39;, {
@@ -120,7 +120,7 @@ angular.module(&#39;Scanner&#39;, [
 angular.module(&#39;Scanner&#39;, [
         &#39;ngRoute&#39;,
         &#39;ngTouch&#39;,
-        &#39;mobile-angular-ui]
+        &#39;mobile-angular-ui&#39;]
     ]) 
     .config([&#39;$routeProvider&#39;, function ($routeProvider) { // actually with explicit DI, I could use any variable name in my function
         $routeProvider.when(&#39;/&#39;, {
