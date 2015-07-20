@@ -142,6 +142,71 @@
 
 <p>The problem is that $http.get timeouts return a null error, so you can&rsquo;t easily identify them, hence the generic error message. At least we now get timeouts though, so problem solved.</p>
 
+<h3 id="fixing-portrait-screen-orientation:b128b7694e4de962e0088bcb1bcb254f">Fixing portrait screen orientation</h3>
+
+<p>I needed to disable landscape orientation when a user turns their phone sideways. I tried the Phonegap suggestion which is to edit <code>www/config.xml</code> but to no avail. What I ended up discovering is that you need to edit <code>platforms/android/AndroidManifest.xml</code> as follows:</p>
+
+<pre><code class="language-xml">   &lt;activity android:configChanges=&quot;orientation|keyboardHidden|keyboard|screenSize|locale&quot; android:screenOrientation=&quot;portrait&quot;&gt;
+   &lt;/activity&gt;
+</code></pre>
+
+<p>Then running <code>phonegap run android</code> will force the app to open and stay in portrait mode. The <code>android:configChanges=&quot;orientation&quot;</code> is important as it tells Android that orientation changes can be handled by the app and that there&rsquo;s no need to close the app!</p>
+
+<h3 id="getting-the-app-icon-right:b128b7694e4de962e0088bcb1bcb254f">Getting the app icon right</h3>
+
+<p>Hours of confusion ahead. The <code>www/config.xml</code> file <em>does nothing</em> if you&rsquo;re not using Adobe&rsquo;s PhoneGap Build cloud service. So, if you&rsquo;re simply compiling your project using the Phonegap CLI, that config file is ignored. This means the icon in <code>www/icon.png</code> is also ignored.</p>
+
+<p>To fix:</p>
+
+<ol>
+<li>Replace the icon in <code>platforms/android/res/drawable</code> with a 96x96 PNG called icon.png</li>
+<li><code>phonegap install android</code></li>
+<li>Hugs for Jimbo</li>
+</ol>
+
+<h3 id="fixing-livereload-injector-error-with-gulp:b128b7694e4de962e0088bcb1bcb254f">Fixing LiveReload injector error with Gulp</h3>
+
+<p>This was a strange one. Running a gulp livereload server in the browser is great, because changes to any of our Javascript files results in Gulp re-minifying everything and reloading the app in the browser. Except that it wasn&rsquo;t working. Every time I made a change, Gulp did it&rsquo;s thing, reloaded the app in the browser and &hellip; boom, blank page with Angular error:</p>
+
+<p><code>Uncaught Error: [$injector:modulerr] Failed to instantiate module 'Scanner' due to: Error: [$injector:nomod] Module is not available! You either misspelled the module name or forgot to load it. If registering a module ensure that you specify the dependencies as the second argument. reload</code></p>
+
+<p>Juicy. On a whim, I did some research into Angular best practices. Turns out, there are two ways of declaring Angular components: implicit DI (dependency injection) or explicit DI. I&rsquo;m going to save you the research:</p>
+
+<p><em>Explicit DI is the way to go</em>.</p>
+
+<p>This is how they look:</p>
+
+<pre><code class="language-javascript">// implicit DI - not good
+angular.module('Scanner', [
+        'ngRoute',
+        'ngTouch',
+        'mobile-angular-ui]
+    ]) 
+    .config(function ($routeProvider) {
+        $routeProvider.when('/', {
+            controller: &quot;MainController&quot;,
+            templateUrl: 'home.html',
+        });
+    });
+
+// explicit DI - good
+angular.module('Scanner', [
+        'ngRoute',
+        'ngTouch',
+        'mobile-angular-ui]
+    ]) 
+    .config(['$routeProvider', function ($routeProvider) { // actually with explicit DI, I could use any variable name in my function
+        $routeProvider.when('/', {
+            controller: &quot;MainController&quot;,
+            templateUrl: 'home.html',
+        });
+    }]);
+</code></pre>
+
+<p>The thing is, when you use Gulp, it minifies your js files. Minification renames variables to short names, which messes up the DI unless we specify the dependencies as strings.</p>
+
+<p>Changing all Angular components to explicit DI has fixed the issue and turned Monday into <code>['Monday', function(goodDay) {}]</code>.</p>
+
   </section>
   <footer>
     <section class="author-info row">

@@ -68,6 +68,71 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The problem is that $http.get timeouts return a null error, so you can&amp;rsquo;t easily identify them, hence the generic error message. At least we now get timeouts though, so problem solved.&lt;/p&gt;
+
+&lt;h3 id=&#34;fixing-portrait-screen-orientation:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Fixing portrait screen orientation&lt;/h3&gt;
+
+&lt;p&gt;I needed to disable landscape orientation when a user turns their phone sideways. I tried the Phonegap suggestion which is to edit &lt;code&gt;www/config.xml&lt;/code&gt; but to no avail. What I ended up discovering is that you need to edit &lt;code&gt;platforms/android/AndroidManifest.xml&lt;/code&gt; as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;   &amp;lt;activity android:configChanges=&amp;quot;orientation|keyboardHidden|keyboard|screenSize|locale&amp;quot; android:screenOrientation=&amp;quot;portrait&amp;quot;&amp;gt;
+   &amp;lt;/activity&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then running &lt;code&gt;phonegap run android&lt;/code&gt; will force the app to open and stay in portrait mode. The &lt;code&gt;android:configChanges=&amp;quot;orientation&amp;quot;&lt;/code&gt; is important as it tells Android that orientation changes can be handled by the app and that there&amp;rsquo;s no need to close the app!&lt;/p&gt;
+
+&lt;h3 id=&#34;getting-the-app-icon-right:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Getting the app icon right&lt;/h3&gt;
+
+&lt;p&gt;Hours of confusion ahead. The &lt;code&gt;www/config.xml&lt;/code&gt; file &lt;em&gt;does nothing&lt;/em&gt; if you&amp;rsquo;re not using Adobe&amp;rsquo;s PhoneGap Build cloud service. So, if you&amp;rsquo;re simply compiling your project using the Phonegap CLI, that config file is ignored. This means the icon in &lt;code&gt;www/icon.png&lt;/code&gt; is also ignored.&lt;/p&gt;
+
+&lt;p&gt;To fix:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Replace the icon in &lt;code&gt;platforms/android/res/drawable&lt;/code&gt; with a 96x96 PNG called icon.png&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;phonegap install android&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Hugs for Jimbo&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;fixing-livereload-injector-error-with-gulp:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Fixing LiveReload injector error with Gulp&lt;/h3&gt;
+
+&lt;p&gt;This was a strange one. Running a gulp livereload server in the browser is great, because changes to any of our Javascript files results in Gulp re-minifying everything and reloading the app in the browser. Except that it wasn&amp;rsquo;t working. Every time I made a change, Gulp did it&amp;rsquo;s thing, reloaded the app in the browser and &amp;hellip; boom, blank page with Angular error:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Uncaught Error: [$injector:modulerr] Failed to instantiate module &#39;Scanner&#39; due to: Error: [$injector:nomod] Module is not available! You either misspelled the module name or forgot to load it. If registering a module ensure that you specify the dependencies as the second argument. reload&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Juicy. On a whim, I did some research into Angular best practices. Turns out, there are two ways of declaring Angular components: implicit DI (dependency injection) or explicit DI. I&amp;rsquo;m going to save you the research:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Explicit DI is the way to go&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is how they look:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// implicit DI - not good
+angular.module(&#39;Scanner&#39;, [
+        &#39;ngRoute&#39;,
+        &#39;ngTouch&#39;,
+        &#39;mobile-angular-ui]
+    ]) 
+    .config(function ($routeProvider) {
+        $routeProvider.when(&#39;/&#39;, {
+            controller: &amp;quot;MainController&amp;quot;,
+            templateUrl: &#39;home.html&#39;,
+        });
+    });
+
+// explicit DI - good
+angular.module(&#39;Scanner&#39;, [
+        &#39;ngRoute&#39;,
+        &#39;ngTouch&#39;,
+        &#39;mobile-angular-ui]
+    ]) 
+    .config([&#39;$routeProvider&#39;, function ($routeProvider) { // actually with explicit DI, I could use any variable name in my function
+        $routeProvider.when(&#39;/&#39;, {
+            controller: &amp;quot;MainController&amp;quot;,
+            templateUrl: &#39;home.html&#39;,
+        });
+    }]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The thing is, when you use Gulp, it minifies your js files. Minification renames variables to short names, which messes up the DI unless we specify the dependencies as strings.&lt;/p&gt;
+
+&lt;p&gt;Changing all Angular components to explicit DI has fixed the issue and turned Monday into &lt;code&gt;[&#39;Monday&#39;, function(goodDay) {}]&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     
