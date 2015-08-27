@@ -154,12 +154,19 @@
 
 <h3 id="getting-the-app-icon-right:b128b7694e4de962e0088bcb1bcb254f">Getting the app icon right</h3>
 
-<p>Hours of confusion ahead. The <code>www/config.xml</code> file <em>does nothing</em> if you&rsquo;re not using Adobe&rsquo;s PhoneGap Build cloud service. So, if you&rsquo;re simply compiling your project using the Phonegap CLI, that config file is ignored. This means the icon in <code>www/icon.png</code> is also ignored.</p>
+<p>Hours of confusion ahead if you go solo, so stay close and don&rsquo;t ask questions. The <code>www/config.xml</code> file&rsquo;s definitions for icons <em>are ignored</em> if you&rsquo;re not using Adobe&rsquo;s PhoneGap Build cloud service. So, if you&rsquo;re simply compiling your project using the Phonegap CLI, the icons declared in that config file are ignored. The icon in <code>www/icon.png</code> is also ignored.</p>
+
+<p>Basically, life as you think you know it is not.</p>
+
+<p>You may have read some interesting things online about this. You may have read about different sizes, and platforms, and densities. You are wrong. Read on to purge your muddied thoughts.</p>
 
 <p>To fix:</p>
 
 <ol>
-<li>Replace the icon in <code>platforms/android/res/drawable</code> with a 96x96 PNG called icon.png</li>
+<li>Put a 96x96 PNG called icon.png in the project root</li>
+<li><code>cordova build android</code></li>
+<li>Check that  <code>platforms/android/res/drawable</code> now contains your icon</li>
+<li>If not, replace the icon in <code>platforms/android/res/drawable</code> with a 96x96 PNG called icon.png</li>
 <li><code>phonegap install android</code></li>
 <li>Hugs for Jimbo</li>
 </ol>
@@ -207,6 +214,30 @@ angular.module('Scanner', [
 
 <p>Changing all Angular components to explicit DI has fixed the issue and turned Monday into <code>['Monday', function(goodDay) {}]</code>.</p>
 
+<h3 id="keeping-the-screen-from-going-off-while-scanning:b128b7694e4de962e0088bcb1bcb254f">Keeping the screen from going off while scanning</h3>
+
+<p>One really doesn&rsquo;t want the screen lock / dim / timeout thing to kick in while scanning. Never fear, Insomnia plugin for Phonegap to the rescue!</p>
+
+<p><a href="https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin">link</a></p>
+
+<h3 id="building-an-apk-for-play-store:b128b7694e4de962e0088bcb1bcb254f">Building an APK for Play Store</h3>
+
+<p><a href="http://stackoverflow.com/questions/26449512/how-to-create-singed-apk-file-using-cordova-command-line-interface">Read the walkthrough here</a></p>
+
+<p>My notes:</p>
+
+<ol>
+<li>Change /src/app.js to have the new version number, and <code>gulp build</code></li>
+<li>Add Lawnchair.js into the /www/js folder</li>
+<li>Change /www/config.xml to have the correct version number</li>
+<li><code>phonegap build android</code></li>
+<li>Edit /platforms/android/AndroidManifest.xml to have new <code>android:versionCode</code> and <code>android:debuggable=&quot;false&quot;</code></li>
+<li><code>cordova build --release android</code></li>
+<li>Put the keystore file in /platforms/android/bin and change to that directory</li>
+<li><code>jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore NAME-mobileapps.keystore Example-release-unsigned.apk xxxxxmobileapps</code></li>
+<li>Staying in the /platforms/android/bin directory, run <code>zipalign -v 4 Example-release-unsigned.apk Example.apk</code></li>
+</ol>
+
   </section>
   <footer>
     <section class="author-info row">
@@ -224,7 +255,7 @@ angular.module('Scanner', [
       <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
       
       
-      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      <li class="next"><a href="http://quijames.github.io/post/Adding-SSL-on-Azure/">Newer <span aria-hidden="true">&rarr;</span></a></li>
       
     </ul>
     

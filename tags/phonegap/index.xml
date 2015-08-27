@@ -81,12 +81,19 @@
 
 &lt;h3 id=&#34;getting-the-app-icon-right:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Getting the app icon right&lt;/h3&gt;
 
-&lt;p&gt;Hours of confusion ahead. The &lt;code&gt;www/config.xml&lt;/code&gt; file &lt;em&gt;does nothing&lt;/em&gt; if you&amp;rsquo;re not using Adobe&amp;rsquo;s PhoneGap Build cloud service. So, if you&amp;rsquo;re simply compiling your project using the Phonegap CLI, that config file is ignored. This means the icon in &lt;code&gt;www/icon.png&lt;/code&gt; is also ignored.&lt;/p&gt;
+&lt;p&gt;Hours of confusion ahead if you go solo, so stay close and don&amp;rsquo;t ask questions. The &lt;code&gt;www/config.xml&lt;/code&gt; file&amp;rsquo;s definitions for icons &lt;em&gt;are ignored&lt;/em&gt; if you&amp;rsquo;re not using Adobe&amp;rsquo;s PhoneGap Build cloud service. So, if you&amp;rsquo;re simply compiling your project using the Phonegap CLI, the icons declared in that config file are ignored. The icon in &lt;code&gt;www/icon.png&lt;/code&gt; is also ignored.&lt;/p&gt;
+
+&lt;p&gt;Basically, life as you think you know it is not.&lt;/p&gt;
+
+&lt;p&gt;You may have read some interesting things online about this. You may have read about different sizes, and platforms, and densities. You are wrong. Read on to purge your muddied thoughts.&lt;/p&gt;
 
 &lt;p&gt;To fix:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Replace the icon in &lt;code&gt;platforms/android/res/drawable&lt;/code&gt; with a 96x96 PNG called icon.png&lt;/li&gt;
+&lt;li&gt;Put a 96x96 PNG called icon.png in the project root&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cordova build android&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Check that  &lt;code&gt;platforms/android/res/drawable&lt;/code&gt; now contains your icon&lt;/li&gt;
+&lt;li&gt;If not, replace the icon in &lt;code&gt;platforms/android/res/drawable&lt;/code&gt; with a 96x96 PNG called icon.png&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;phonegap install android&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Hugs for Jimbo&lt;/li&gt;
 &lt;/ol&gt;
@@ -133,6 +140,30 @@ angular.module(&#39;Scanner&#39;, [
 &lt;p&gt;The thing is, when you use Gulp, it minifies your js files. Minification renames variables to short names, which messes up the DI unless we specify the dependencies as strings.&lt;/p&gt;
 
 &lt;p&gt;Changing all Angular components to explicit DI has fixed the issue and turned Monday into &lt;code&gt;[&#39;Monday&#39;, function(goodDay) {}]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;keeping-the-screen-from-going-off-while-scanning:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Keeping the screen from going off while scanning&lt;/h3&gt;
+
+&lt;p&gt;One really doesn&amp;rsquo;t want the screen lock / dim / timeout thing to kick in while scanning. Never fear, Insomnia plugin for Phonegap to the rescue!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin&#34;&gt;link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;building-an-apk-for-play-store:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Building an APK for Play Store&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/26449512/how-to-create-singed-apk-file-using-cordova-command-line-interface&#34;&gt;Read the walkthrough here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;My notes:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Change /src/app.js to have the new version number, and &lt;code&gt;gulp build&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add Lawnchair.js into the /www/js folder&lt;/li&gt;
+&lt;li&gt;Change /www/config.xml to have the correct version number&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;phonegap build android&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit /platforms/android/AndroidManifest.xml to have new &lt;code&gt;android:versionCode&lt;/code&gt; and &lt;code&gt;android:debuggable=&amp;quot;false&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cordova build --release android&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Put the keystore file in /platforms/android/bin and change to that directory&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore NAME-mobileapps.keystore Example-release-unsigned.apk xxxxxmobileapps&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Staying in the /platforms/android/bin directory, run &lt;code&gt;zipalign -v 4 Example-release-unsigned.apk Example.apk&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     

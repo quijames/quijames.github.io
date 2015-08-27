@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Iis on James&#39;s Dev Lessons</title>
+    <link>http://quijames.github.io/tags/iis/</link>
+    <description>Recent content in Iis on James&#39;s Dev Lessons</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Aug 2015 16:43:28 +0200</lastBuildDate>
+    <atom:link href="http://quijames.github.io/tags/iis/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to install an SSL certificate on Azure Websites</title>
+      <link>http://quijames.github.io/post/Adding-SSL-on-Azure/</link>
+      <pubDate>Wed, 26 Aug 2015 16:43:28 +0200</pubDate>
+      
+      <guid>http://quijames.github.io/post/Adding-SSL-on-Azure/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;Buy a UCC SSL certificate on GoDaddy.&lt;/li&gt;
+&lt;li&gt;To set it up, you&amp;rsquo;ll need to create a CSR. Do this on your local IIS. &lt;a href=&#34;https://za.godaddy.com/help/generating-a-certificate-signing-request-microsoft-iis-8-4950&#34;&gt;See this link on how to do this&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Paste the CSR into GoDaddy, and enter the other domains in the Subject Alternate Names (SAN&amp;rsquo;s) field on GoDaddy&lt;/li&gt;
+&lt;li&gt;Once the domains have been verified, download the certificate.&lt;/li&gt;
+&lt;li&gt;Install the certificate on local IIS - follow &lt;a href=&#34;https://za.godaddy.com/help/installing-an-ssl-certificate-in-microsoft-iis-8-4951&#34;&gt;this guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Once installed, open up IIS, and open &amp;ldquo;Server Certificates&amp;rdquo;. Right clik on the certificate, and click &amp;ldquo;Export&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Export it to a .pfx file and put a password on it.&lt;/li&gt;
+&lt;li&gt;Manage your website in Azure, and go to the &amp;ldquo;Configure&amp;rdquo; tab.&lt;/li&gt;
+&lt;li&gt;Upload the SSL certificate, and update the bindings, and off you go!&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
