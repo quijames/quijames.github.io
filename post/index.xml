@@ -2,19 +2,117 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on James&#39;s Dev Lessons</title>
-    <link>http://quijames.github.io/post/</link>
+    <link>http://localhost:1313/post/</link>
     <description>Recent content in Posts on James&#39;s Dev Lessons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Aug 2015 12:02:24 +0200</lastBuildDate>
-    <atom:link href="http://quijames.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Sep 2015 16:42:57 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Setting Up TeamCity continuous integration</title>
+      <link>http://localhost:1313/post/Setting-Up-TeamCity-Server/</link>
+      <pubDate>Thu, 03 Sep 2015 16:42:57 +0200</pubDate>
+      
+      <guid>http://localhost:1313/post/Setting-Up-TeamCity-Server/</guid>
+      <description>
+
+&lt;h3 id=&#34;install-teamcity-professional-on-your-server:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Install TeamCity Professional on your server&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a project&lt;/li&gt;
+&lt;li&gt;I set it up on port 8080 (remember to add an endpoint in Azure)&lt;/li&gt;
+&lt;li&gt;Connect it to your Git repo&lt;/li&gt;
+&lt;li&gt;Set up build configurations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;install-msbuild:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Install MsBuild&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I opted to first install VS 2015 Express for Web&lt;/li&gt;
+&lt;li&gt;This installs MsBuild&lt;/li&gt;
+&lt;li&gt;For our project, you&amp;rsquo;re going to need some pretty specific .targets stuff for MsBuild. My advice: copy &lt;code&gt;C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio&lt;/code&gt; folder from an old server. If you can&amp;rsquo;t, then you&amp;rsquo;re just going to have to try run the Team City builds over and over and handle each error individually till you have all the right stuff.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;install-msdeploy:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Install MsDeploy&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pretty straightforward - do this through the web platform installer&lt;/li&gt;
+&lt;li&gt;Once installed, don&amp;rsquo;t forget to add it to your path &lt;code&gt;C:\Program Files (x86)\IIS\Microsoft Web Deploy V3&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;set-up-websites-in-iis:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Set up websites in IIS&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Set up TicketPony.Web on port 80 aimed at &lt;code&gt;c:\inetpub\ticketpony.web\www&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set up TicketPony.Auth on port 99 aimed at &lt;code&gt;c:\inetpub\ticketpony.auth\www&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Once you&amp;rsquo;ve successfully built and deployed, you&amp;rsquo;ll find an &lt;code&gt;/api&lt;/code&gt; folder in the &lt;code&gt;ticketpony.web\www&lt;/code&gt; folder. Convert it into an application.&lt;/li&gt;
+&lt;li&gt;Make sure your application pools are both running .NET 4, integrated&lt;/li&gt;
+&lt;li&gt;Your TicketPony.Web appl. pool should be run under the admin account of the computer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;test-team-city-build-configurations:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Test Team City build configurations&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The first build config may fail on npm-install.bat. I fixed this by running that file manually as Administrator and then restarting the machine.&lt;/li&gt;
+&lt;li&gt;The second config may fail if you haven&amp;rsquo;t got your websites set up correctly in IIS&lt;/li&gt;
+&lt;li&gt;The third config may fail if you haven&amp;rsquo;t got the correct database settings in your Database project settings (target framework and connection string)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;install-ghostscript:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Install GhostScript&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ghostscript.com/download/&#34;&gt;http://ghostscript.com/download/&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I chose to download the Ghostscript 9.16 file for Postscript and PDF interpreter / renderer.&lt;/li&gt;
+&lt;li&gt;Choose the 32 bit version.&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;Program Files (x86)\gs\gs9.16\bin&lt;/code&gt; folder to your system path&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;install-imagemagick:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Install ImageMagick&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.imagemagick.org/script/binary-releases.php&#34;&gt;http://www.imagemagick.org/script/binary-releases.php&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install the Windows binary&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;install-visual-c-redistributable:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Install Visual C++ Redistributable&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.microsoft.com/en-in/download/details.aspx?id=30679&#34;&gt;http://www.microsoft.com/en-in/download/details.aspx?id=30679&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is needed by ImageMagick&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;install-msmq:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Install MSMQ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is easily done through Server Manager (Google it) ;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;get-your-project-settings-right:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Get your project settings right&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make sure all release web.configs have the correct connection strings for your DB&lt;/li&gt;
+&lt;li&gt;Make sure you have the correct environment variables for release&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;final-things:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Final things&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make sure all endpoints are open&lt;/li&gt;
+&lt;li&gt;Restart the server&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Setting Up A Blog</title>
-      <link>http://quijames.github.io/post/Setting-Up-A-Blog/</link>
+      <link>http://localhost:1313/post/Setting-Up-A-Blog/</link>
       <pubDate>Thu, 27 Aug 2015 12:02:24 +0200</pubDate>
       
-      <guid>http://quijames.github.io/post/Setting-Up-A-Blog/</guid>
+      <guid>http://localhost:1313/post/Setting-Up-A-Blog/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.gohugo.io/overview/quickstart/&#34;&gt;Get started with Hugo here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Create a Git repo in the /public folder of your compiled blog&lt;/p&gt;
@@ -25,10 +123,10 @@
     
     <item>
       <title>How to install an SSL certificate on Azure Websites</title>
-      <link>http://quijames.github.io/post/Adding-SSL-on-Azure/</link>
+      <link>http://localhost:1313/post/Adding-SSL-on-Azure/</link>
       <pubDate>Wed, 26 Aug 2015 16:43:28 +0200</pubDate>
       
-      <guid>http://quijames.github.io/post/Adding-SSL-on-Azure/</guid>
+      <guid>http://localhost:1313/post/Adding-SSL-on-Azure/</guid>
       <description>&lt;ol&gt;
 &lt;li&gt;Buy a UCC SSL certificate on GoDaddy.&lt;/li&gt;
 &lt;li&gt;To set it up, you&amp;rsquo;ll need to create a CSR. Do this on your local IIS. &lt;a href=&#34;https://za.godaddy.com/help/generating-a-certificate-signing-request-microsoft-iis-8-4950&#34;&gt;See this link on how to do this&lt;/a&gt;.&lt;/li&gt;
@@ -45,10 +143,10 @@
     
     <item>
       <title>Building an app with AngularJS, PhoneGap and Firebase</title>
-      <link>http://quijames.github.io/post/test/</link>
+      <link>http://localhost:1313/post/test/</link>
       <pubDate>Fri, 10 Jul 2015 16:43:28 +0200</pubDate>
       
-      <guid>http://quijames.github.io/post/test/</guid>
+      <guid>http://localhost:1313/post/test/</guid>
       <description>
 
 &lt;h1 id=&#34;part-1-setting-up-your-environment:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Part 1: Setting up your environment&lt;/h1&gt;

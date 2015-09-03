@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Firebase on James&#39;s Dev Lessons</title>
-    <link>http://quijames.github.io/tags/firebase/</link>
+    <link>http://localhost:1313/tags/firebase/</link>
     <description>Recent content in Firebase on James&#39;s Dev Lessons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Jul 2015 16:43:28 +0200</lastBuildDate>
-    <atom:link href="http://quijames.github.io/tags/firebase/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/firebase/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Building an app with AngularJS, PhoneGap and Firebase</title>
-      <link>http://quijames.github.io/post/test/</link>
+      <link>http://localhost:1313/post/test/</link>
       <pubDate>Fri, 10 Jul 2015 16:43:28 +0200</pubDate>
       
-      <guid>http://quijames.github.io/post/test/</guid>
+      <guid>http://localhost:1313/post/test/</guid>
       <description>
 
 &lt;h1 id=&#34;part-1-setting-up-your-environment:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Part 1: Setting up your environment&lt;/h1&gt;
