@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>James&#39;s Dev Lessons</title>
-    <link>http://localhost:1313/</link>
+    <link>http://quijames.github.io/</link>
     <description>Recent content on James&#39;s Dev Lessons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 03 Sep 2015 16:42:57 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://quijames.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Setting Up TeamCity continuous integration</title>
-      <link>http://localhost:1313/post/Setting-Up-TeamCity-Server/</link>
+      <link>http://quijames.github.io/post/Setting-Up-TeamCity-Server/</link>
       <pubDate>Thu, 03 Sep 2015 16:42:57 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/Setting-Up-TeamCity-Server/</guid>
+      <guid>http://quijames.github.io/post/Setting-Up-TeamCity-Server/</guid>
       <description>
 
 &lt;h3 id=&#34;install-teamcity-professional-on-your-server:ec6b5e92ae410912266bc52e330cb073&#34;&gt;Install TeamCity Professional on your server&lt;/h3&gt;
@@ -109,10 +109,10 @@
     
     <item>
       <title>Setting Up A Blog</title>
-      <link>http://localhost:1313/post/Setting-Up-A-Blog/</link>
+      <link>http://quijames.github.io/post/Setting-Up-A-Blog/</link>
       <pubDate>Thu, 27 Aug 2015 12:02:24 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/Setting-Up-A-Blog/</guid>
+      <guid>http://quijames.github.io/post/Setting-Up-A-Blog/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.gohugo.io/overview/quickstart/&#34;&gt;Get started with Hugo here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Create a Git repo in the /public folder of your compiled blog&lt;/p&gt;
@@ -123,10 +123,10 @@
     
     <item>
       <title>How to install an SSL certificate on Azure Websites</title>
-      <link>http://localhost:1313/post/Adding-SSL-on-Azure/</link>
+      <link>http://quijames.github.io/post/Adding-SSL-on-Azure/</link>
       <pubDate>Wed, 26 Aug 2015 16:43:28 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/Adding-SSL-on-Azure/</guid>
+      <guid>http://quijames.github.io/post/Adding-SSL-on-Azure/</guid>
       <description>&lt;ol&gt;
 &lt;li&gt;Buy a UCC SSL certificate on GoDaddy.&lt;/li&gt;
 &lt;li&gt;To set it up, you&amp;rsquo;ll need to create a CSR. Do this on your local IIS. &lt;a href=&#34;https://za.godaddy.com/help/generating-a-certificate-signing-request-microsoft-iis-8-4950&#34;&gt;See this link on how to do this&lt;/a&gt;.&lt;/li&gt;
@@ -143,10 +143,10 @@
     
     <item>
       <title>Building an app with AngularJS, PhoneGap and Firebase</title>
-      <link>http://localhost:1313/post/test/</link>
+      <link>http://quijames.github.io/post/test/</link>
       <pubDate>Fri, 10 Jul 2015 16:43:28 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/test/</guid>
+      <guid>http://quijames.github.io/post/test/</guid>
       <description>
 
 &lt;h1 id=&#34;part-1-setting-up-your-environment:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Part 1: Setting up your environment&lt;/h1&gt;

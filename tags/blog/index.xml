@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on James&#39;s Dev Lessons</title>
-    <link>http://localhost:1313/tags/blog/</link>
+    <link>http://quijames.github.io/tags/blog/</link>
     <description>Recent content in Blog on James&#39;s Dev Lessons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 27 Aug 2015 12:02:24 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://quijames.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Setting Up A Blog</title>
-      <link>http://localhost:1313/post/Setting-Up-A-Blog/</link>
+      <link>http://quijames.github.io/post/Setting-Up-A-Blog/</link>
       <pubDate>Thu, 27 Aug 2015 12:02:24 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/Setting-Up-A-Blog/</guid>
+      <guid>http://quijames.github.io/post/Setting-Up-A-Blog/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.gohugo.io/overview/quickstart/&#34;&gt;Get started with Hugo here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Create a Git repo in the /public folder of your compiled blog&lt;/p&gt;

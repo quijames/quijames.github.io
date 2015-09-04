@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Iis on James&#39;s Dev Lessons</title>
-    <link>http://localhost:1313/tags/iis/</link>
+    <link>http://quijames.github.io/tags/iis/</link>
     <description>Recent content in Iis on James&#39;s Dev Lessons</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 26 Aug 2015 16:43:28 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/iis/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://quijames.github.io/tags/iis/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How to install an SSL certificate on Azure Websites</title>
-      <link>http://localhost:1313/post/Adding-SSL-on-Azure/</link>
+      <link>http://quijames.github.io/post/Adding-SSL-on-Azure/</link>
       <pubDate>Wed, 26 Aug 2015 16:43:28 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/Adding-SSL-on-Azure/</guid>
+      <guid>http://quijames.github.io/post/Adding-SSL-on-Azure/</guid>
       <description>&lt;ol&gt;
 &lt;li&gt;Buy a UCC SSL certificate on GoDaddy.&lt;/li&gt;
 &lt;li&gt;To set it up, you&amp;rsquo;ll need to create a CSR. Do this on your local IIS. &lt;a href=&#34;https://za.godaddy.com/help/generating-a-certificate-signing-request-microsoft-iis-8-4950&#34;&gt;See this link on how to do this&lt;/a&gt;.&lt;/li&gt;
