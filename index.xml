@@ -288,6 +288,7 @@ angular.module(&#39;Scanner&#39;, [
 &lt;ul&gt;
 &lt;li&gt;Change /src/app.js to have the new version number, DEBUG must be false&lt;/li&gt;
 &lt;li&gt;Update /config.js to have minify_images=true and weinre off&lt;/li&gt;
+&lt;li&gt;Remove Lawnchair.js from /src/js/external&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;gulp build&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Add Lawnchair.js into the /www/js folder&lt;/li&gt;
 &lt;li&gt;Change /www/config.xml to have the correct version number&lt;/li&gt;
