@@ -153,8 +153,10 @@ angular.module(&#39;Scanner&#39;, [
 
 &lt;p&gt;My notes:&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Change /src/app.js to have the new version number, and &lt;code&gt;gulp build&lt;/code&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;Change /src/app.js to have the new version number, DEBUG must be false&lt;/li&gt;
+&lt;li&gt;Update /config.js to have minify_images=true and weinre off&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gulp build&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Add Lawnchair.js into the /www/js folder&lt;/li&gt;
 &lt;li&gt;Change /www/config.xml to have the correct version number&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;phonegap build android&lt;/code&gt;&lt;/li&gt;
@@ -163,7 +165,8 @@ angular.module(&#39;Scanner&#39;, [
 &lt;li&gt;Put the keystore file in /platforms/android/bin and change to that directory&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore NAME-mobileapps.keystore Example-release-unsigned.apk xxxxxmobileapps&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Staying in the /platforms/android/bin directory, run &lt;code&gt;zipalign -v 4 Example-release-unsigned.apk Example.apk&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;Update Firebase with the version number&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
