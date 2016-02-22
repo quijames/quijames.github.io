@@ -188,6 +188,17 @@ angular.module(&#39;Scanner&#39;, [
 &lt;li&gt;Staying in the /platforms/android/bin directory, run &lt;code&gt;zipalign -v 4 Example-release-unsigned.apk Example.apk&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Update Firebase with the version number&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h3 id=&#34;using-manatee-barcode-scanner:b128b7694e4de962e0088bcb1bcb254f&#34;&gt;Using Manatee barcode scanner&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Download latest SDK&lt;/li&gt;
+&lt;li&gt;In your project root, &lt;code&gt;cordova plugin add &amp;lt;folder&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit /plugins/com.manateeworks.barcodescanner/www/MWBScanner.js to have your keys and settings&lt;/li&gt;
+&lt;li&gt;Build to Android&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you need to make changes to any of the settings AFTER building, you have to do so by either editing it directly in \platforms\android\platform_www\plugins\com.manateeworks.barcodescanner\www\MWBScanner.js or by removing the plugin, and repeating the above steps.&lt;/p&gt;
 </description>
     </item>
     
